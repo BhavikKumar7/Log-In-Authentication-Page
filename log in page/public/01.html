@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            letter-spacing: 3px;
+            color: white
+        }
+        body {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #1F4172;
+        }
+        #container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+        #end {
+            text-align: center;
+            margin-top: 30px;
+            color: white;
+        }
+        .box {
+            display: flex;
+            flex-direction: column;
+            margin: 100px;
+            align-items: center;
+            justify-content: center;
+        }
+        .display {
+            padding: 50px 0 50px 0;
+            font-size: 50px;
+            height: 50px;
+            color: #ffb727
+        }
+        .text {
+            font-size: 18px;
+        }
+        #wrapper {
+            width: 400px;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            border: 0px solid rgba(16, 16, 16, 0.5);
+            backdrop-filter: blur(9px);
+            -webkit-backdrop-filter: blur(9px);
+        }
+        #cont {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cont">
+        <div id="container">
+            <div id="box1" class="box">
+                <div class="icon"><i class="fa fa-diagram-project fa-4x" style="color: #ababab;"></i></div>
+                <div class="display" id="display1" target="400"></div>
+                <div class="text">Project Completed</div>
+            </div>
+            <div id="box2" class="box">
+                <div class="icon"><i class="fa-solid fa-users fa-4x" style="color: #ababab;"></i></div>
+                <div class="display" id="display2" target="15000"></div>
+                <div class="text">Our Happy Clients</div>
+            </div>
+            <div id="box3" class="box">
+                <div class="icon"><i class="fa-solid fa-list fa-4x" style="color: #ababab ;"></i></div>
+                <div class="display" id="display3" target="240"></div>
+                <div class="text">On Going Projects</div>
+            </div>
+        </div>
+        <div id="wrapper">
+            <div id="end">
+                <br><br><br>
+                <p>Redirecting to <a href="login.html">Home Page</a> in <span id="countdown">10</span> seconds.</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        var countdown = 10;
+        function updateCountdown() {
+            var countdownDisplay = document.getElementById("countdown");
+            countdownDisplay.innerText = countdown;
+            if (countdown === 0) {
+                window.location.href = "login.html";
+            } else {
+                countdown--;
+                setTimeout(updateCountdown, 1000);
+            }
+        }
+        window.onload = updateCountdown;
+        const display1 = document.getElementById('display1');
+        const display2 = document.getElementById('display2');
+        const display3 = document.getElementById('display3');
+        let i = 0;
+        var j = 0;
+        var k = 0;
+        var count = 0;
+        window.addEventListener('load', () => {
+            const counter1 = setInterval(() => {
+                display1.innerHTML = `${i}+`
+                i = i + 10
+                display2.innerHTML = `${j}+`
+                j = j + 375
+                display3.innerHTML = `${k}+`
+                k = k + 6
+                count++;
+                if (count == 41) {
+                    clearInterval(counter1)
+                }
+            }, 20)
+        }
+        )
+    </script>
+</body>
+
+</html>

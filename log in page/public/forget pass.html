@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Password</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <form id="resetForm" action="#">
+            <h2><u>Reset Password</u></h2><br><br>
+            <p>Please enter the email address that you used to register, and we will send you a link to reset your
+                password via Email. </p>
+            <div class="input-field"><br><br>
+                <input type="email" id="emailInput" required>
+                <label>Email</label>
+            </div>
+            <div class="Reset"><br><br>
+                <button type="button" onclick="resetPassword()"><a href="change pass.html">Reset My Password</a></button>
+            </div>
+            <div class="End"><br>
+                <p>Return to <a href="login.html">Log in</a></p>
+            </div>
+        </form>
+    </div>
+    <script>
+        function resetPassword() {
+            var email = document.getElementById('emailInput').value;
+            if (validateEmail(email)) {
+                alert('Password reset link sent to ' + email);
+            } else {
+                alert('Please enter a valid email address.');
+            }
+        }
+        function validateEmail(email) {
+            var re = /\S+@\S+\.\S+/;
+            return re.test(email);
+        }
+    </script>
+</body>
+
+</html>

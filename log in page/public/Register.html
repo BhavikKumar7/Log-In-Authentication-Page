@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <form action="#" id="registerForm" method="post">
+            <h2>Sign Up</h2>
+            <div class="input-field">
+                <input type="text" required id="name">
+                <label>Enter your Name</label>
+            </div>
+            <div class="input-field">
+                <input type="text" required id="email">
+                <label>Enter your email</label>
+            </div>
+            <div class="input-field">
+                <input type="password" id="password" required>
+                <label>Enter your password</label>
+                <span class="show-password1" onclick="togglePasswordVisibility('password', 'show-password1')">👁️</span>
+            </div>
+            <div class="input-field">
+                <input type="password" id="password1" required>
+                <label>Confirm password</label>
+                <span class="show-password2"
+                    onclick="togglePasswordVisibility('password1', 'show-password2')">👁️</span>
+            </div>
+            <div class="create">
+                <br>
+                <button type="button" onclick="validateForm()" name="create">Create a New Account</button>
+            </div>
+            <div class="end">
+                <p>Have an Account? <a href="login.html">Log in</a></p><br>
+                <hr>
+            </div>
+        </form>
+        <div class="cont">
+            <p>Or Register with:</p><br>
+            <button onclick="loginWithGoogle()"><img src="google(1).png" alt="" id="google"></button>
+            <button onclick="loginWithFacebook()"><img src="facebook(1).png" alt="" id="facebook"></button>
+            <button onclick="loginWithGitHub()"><img src="github(1).png" alt="" id="github"></button>
+        </div>
+        <div class="para"><br>
+            <p>By creating an account, you agree to the <u>Terms of Condition</u> and <u>Privacy Policy</u></p>
+        </div>
+    </div>
+    <script>
+        function togglePasswordVisibility(inputId, iconId) {
+            const passwordInput = document.getElementById(inputId);
+            const eyeIcon = document.querySelector(`.${iconId}`);
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.textContent = '👁️';
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.textContent = '👁️';
+            }
+        }
+
+        function validateForm() {
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+            var confirmPassword = document.getElementById('password1').value;
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match. Please check and try again.");
+            } else {
+                // Simulate storing registration information in a CSV format
+                const csvData = `${name},${email},${password}\n`;
+
+                // Simulate saving to a file (download)
+                download('credentials.csv', csvData);
+
+                console.log('Name:', name);
+                console.log('Email:', email);
+                console.log('Password:', password);
+
+                // Redirect to the created.html page
+                window.location.href = "created.html";
+            }
+        }
+
+        function download(filename, text) {
+            // Simulate saving to a file (download)
+            const element = document.createElement('a');
+            element.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(text));
+            element.setAttribute('download', filename);
+
+            element.style.display = 'none';
+            document.body.appendChild(element);
+
+            element.click();
+
+            document.body.removeChild(element);
+        }
+
+        function loginWithGoogle() {
+            const googleClientId = 'YOUR_GOOGLE_CLIENT_ID';
+            const redirectUri = 'YOUR_REDIRECT_URI';
+            window.location.href = `https://accounts.google.com/o/oauth2/auth?client_id=${googleClientId}&redirect_uri=${redirectUri}&response_type=token&scope=email%20profile`;
+        }
+
+        function loginWithFacebook() {
+            const facebookAppId = 'YOUR_FACEBOOK_APP_ID';
+            const redirectUri = 'YOUR_REDIRECT_URI';
+            window.location.href = `https://www.facebook.com/v13.0/dialog/oauth?client_id=${facebookAppId}&redirect_uri=${redirectUri}&response_type=token&scope=email%20public_profile`;
+        }
+
+        function loginWithGitHub() {
+            const githubClientId = 'YOUR_GITHUB_CLIENT_ID';
+            const redirectUri = 'YOUR_REDIRECT_URI';
+            window.location.href = `https://github.com/login/oauth/authorize?client_id=${githubClientId}&redirect_uri=${redirectUri}&scope=user`;
+        }
+    </script>
+</body>
+
+</html>

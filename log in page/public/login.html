@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log in</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    function togglePasswordVisibility(inputId) {
+      const passwordInput = document.getElementById(inputId);
+      passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
+    }
+
+    function login() {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      // Simulate storing credentials in a CSV format
+      const csvData = `${email},${password}\n`;
+
+      // Simulate saving to a file
+      download('credentials.csv', csvData);
+
+      console.log('Email:', email);
+      console.log('Password:', password);
+    }
+
+    function download(filename, text) {
+      const element = document.createElement('a');
+      element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+      element.setAttribute('download', filename);
+
+      element.style.display = 'none';
+      document.body.appendChild(element);
+
+      element.click();
+
+      document.body.removeChild(element);
+    }
+    
+    function loginWithGoogle() {
+      const googleClientId = 'YOUR_GOOGLE_CLIENT_ID';
+      const redirectUri = 'YOUR_REDIRECT_URI';
+      window.location.href = `https://accounts.google.com/o/oauth2/auth?client_id=${googleClientId}&redirect_uri=${redirectUri}&response_type=token&scope=email%20profile`;
+    }
+
+    function loginWithFacebook() {
+      const facebookAppId = 'YOUR_FACEBOOK_APP_ID';
+      const redirectUri = 'YOUR_REDIRECT_URI';
+      window.location.href = `https://www.facebook.com/v13.0/dialog/oauth?client_id=${facebookAppId}&redirect_uri=${redirectUri}&response_type=token&scope=email%20public_profile`;
+    }
+
+    function loginWithGitHub() {
+      const githubClientId = 'YOUR_GITHUB_CLIENT_ID';
+      const redirectUri = 'YOUR_REDIRECT_URI';
+      window.location.href = `https://github.com/login/oauth/authorize?client_id=${githubClientId}&redirect_uri=${redirectUri}&scope=user`;
+    }
+  </script>
+</head>
+
+<body>
+  <div class="wrapper">
+    <form id="loginForm">
+      <h2>Login</h2>
+      <div class="input-field">
+        <input type="text" id="email" required>
+        <label>Enter your email</label>
+      </div>
+      <div class="input-field password-wrapper">
+        <input type="password" id="password" required>
+        <label>Enter your password</label>
+        <span class="show-password" onclick="togglePasswordVisibility('password')">👁️</span>
+      </div>
+      <div class="forget">
+        <label for="remember">
+          <input type="checkbox" id="remember">
+          <p>Remember me</p>
+        </label>
+        <a href="forget pass.html">Forgot password?</a>
+      </div>
+      <button type="button" onclick="login()"><a href="index-1.html">Log In</a></button>
+      <div class="register">
+        <p>Don't have an account? <a href="Register.html">Register</a></p><br>
+        <hr>
+      </div>
+    </form>
+    <div class="cont">
+      <p>Or log in with:</p><br>
+      <button onclick="loginWithGoogle()"><img src="google(1).png" alt="" id="google"></button>
+      <button onclick="loginWithFacebook()"><img src="facebook(1).png" alt="" id="facebook"></button>
+      <button onclick="loginWithGitHub()"><img src="github(1).png" alt="" , id="github"></button>
+    </div>
+  </div>
+</body>
+
+</html>

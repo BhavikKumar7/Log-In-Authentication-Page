@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <form action="#">
+            <h2><u>Thank You</u></h2><br><br>
+            <div class="conclusion">
+                <p>Thank You, for visiting our website. <br> Your Password has successfully changed.</p>
+            </div><br>
+            <div class="end">
+                <br><br><br>
+                <p>Redirecting to <a href="login.html">Home Page</a> in <span id="countdown">10</span> seconds.</p>
+            </div>
+        </form>
+    </div>
+    <script>
+        var countdown = 10;
+        function updateCountdown() {
+            var countdownDisplay = document.getElementById("countdown");
+            countdownDisplay.innerText = countdown;
+            if (countdown === 0) {
+                window.location.href = "login.html";
+            } else {
+                countdown--;
+                setTimeout(updateCountdown, 1000);
+            }
+        }
+        window.onload = updateCountdown;
+    </script>
+</body>
+</html>
